@@ -10052,3 +10052,15 @@ a.text-dark:hover, a.text-dark:focus {
 footer{
     width: 1000px;
 }
+
+.brand-list {
+    background-color: rgb(249, 245, 245);
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 5px;
+    list-style: none;
+}
+
+.brand-list a:hover {
+    color: red;
+}

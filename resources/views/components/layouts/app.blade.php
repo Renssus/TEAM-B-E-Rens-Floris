@@ -34,6 +34,9 @@
 
         </div>
 
+        <div>
+            <x-footer/>
+        </div>
     </div>
 
 
@@ -46,9 +49,6 @@
 <script>//window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 <script src="{{ asset('/js/app.js') }}"></script>
 
-<div>
-    <x-footer/>
-</div>
 </body>
 </html>
 

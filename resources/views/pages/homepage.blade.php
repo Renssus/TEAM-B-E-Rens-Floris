@@ -1,77 +1,37 @@
 <x-layouts.app>
 
     <x-slot:introduction_text>
-        <p><img src="img/afbl_logo.png" align="right" width="100"
-                height="100">{{ __('introduction_texts.homepage_line_1') }}</p>
+        <p><img src="img/afbl_logo.png" align="right" width="100" height="100">{{ __('introduction_texts.homepage_line_1') }}</p>
         <p>{{ __('introduction_texts.homepage_line_2') }}</p>
         <p>{{ __('introduction_texts.homepage_line_3') }}</p>
     </x-slot:introduction_text>
 
-    <h1>
+    <h1 class="">
         <x-slot:title>
             {{ __('misc.all_brands') }}
         </x-slot:title>
     </h1>
 
-    <?php
-    $size = count($brands);
-    $columns = 3;
-    $chunk_size = ceil($size / $columns);
-    ?>
-
-    <style>
-        .brand-list {
-            background-color: rgb(249, 245, 245);
-            border: 1px solid;
-            box-shadow: 5px 5px 5px #e4dede;
-            padding: 10px;
-            border-radius: 5px;
-        }
-
-        .brand-list a {
-            text-decoration: none;
-        }
-
-        .brand-list a:hover {
-            color: rgb(42, 92, 123);
-        }
-    </style>
-
     <div class="container">
-        <div class="alphabet-links">
-            @foreach (range('A', 'Z') as $letter)
-                <a href="/brands/{{ $letter }}">{{ $letter }}</a>
-            @endforeach
-            <!-- Example row of columns -->
-            <div class="row">
-                @foreach ($brands->chunk($chunk_size) as $chunk)
-                    <div class="col-md-4">
+        <div class="brand-list">
+            @php
+                $groupedBrands = $brands->groupBy(function($brand) {
+                    return strtoupper(substr($brand->name, 0, 1));
+                });
+            @endphp
 
-                        {{-- <ul class="brand-list"> --}}
-                        @foreach ($chunk as $brand)
-                            <?php
-                            $current_first_letter = strtoupper(substr($brand->name, 0, 1));
-                            
-                            if (!isset($header_first_letter) || (isset($header_first_letter) && $current_first_letter != $header_first_letter)) {
-                                echo '</ul>
-                                                    <h2 class="header-text">' .
-                                    $current_first_letter .
-                                    '</h2>
-                                                    <ul class="brand-list">';
-                            }
-                            $header_first_letter = $current_first_letter;
-                            ?>
-
+            @foreach($groupedBrands as $letter => $brands)
+                <div>
+                    <h2>{{ $letter }}</h2>
+                    <ul>
+                        @foreach($brands as $brand)
                             <li>
-                                <a
-                                    href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/">{{ $brand->name }}</a>
+                                <a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" class="text-dark">{{ $brand->name }}</a>
                             </li>
                         @endforeach
-                        </ul>
-                    </div>
-                    <?php
-                    unset($header_first_letter);
-                    ?>
-                @endforeach
-            </div>
+                    </ul>
+                </div>
+            @endforeach
+        </div>
+    </div>
 </x-layouts.app>
