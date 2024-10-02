@@ -10034,3 +10034,15 @@ a.text-dark:hover, a.text-dark:focus {
     color: #ccc;
     content: "/ ";
 }
+
+.brand-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.brand-list > div {
+    flex: 1 1 30%;
+    margin: 10px;
+}
+.brand-list h2 {
+    margin-top: 0;
+}
