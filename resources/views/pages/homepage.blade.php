@@ -25,7 +25,6 @@
 
             @foreach($brands->chunk($chunk_size) as $chunk)
                 <div class="col-md-4">
-
                     <ul>
                         @foreach($chunk as $brand)
 

@@ -534,6 +534,11 @@ pre code {
     overflow-y: scroll;
 }
 
+
+.container {
+    display: flex;
+}
+
 .container,
 .container-fluid,
 .container-xl,
@@ -541,10 +546,13 @@ pre code {
 .container-md,
 .container-sm {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
     margin-right: auto;
     margin-left: auto;
+    justify-content: center;
+
+
 }
 
 @media (min-width: 576px) {
@@ -572,6 +580,7 @@ pre code {
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
+    justify-content: space-evenly;
 }
 
 .no-gutters {
