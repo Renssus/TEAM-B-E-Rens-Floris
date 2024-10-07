@@ -23,7 +23,7 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Diensten</a></li>
                 <li><a href="#">Portfolio</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </div>
 
