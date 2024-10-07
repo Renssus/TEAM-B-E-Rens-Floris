@@ -6,12 +6,14 @@
         <p>{{ __('introduction_texts.homepage_line_3') }}</p>
     </x-slot:introduction_text>
 
-
-        <p>Kies jou categorie</p>
+    <p>Kies jou categorie</p>
     <div class="category-filter">
         <select id="category-select" class="form-control">
-            <option value="all">{{ __('Alle categorieën') }}</option>
-            <option value="technology">{{ __('technology') }}</option>
+            <option value="all">Alle categorieën</option>
+            <option value="technology">Technology</option>
+            <option value="telefoon">Telefoon</option>
+            <option value="box">Box</option>
+            <!-- Add more categories as needed -->
         </select>
     </div>
 
@@ -47,7 +49,7 @@
             @endphp
 
             @foreach($groupedBrands as $letter => $brands)
-            <div id="{{ $letter }}">
+            <div id="{{ $letter }}" class="letter-section">
                 <div class="border-brand">
                     <h2>{{ $letter }}</h2>
                     <ul>
@@ -85,6 +87,7 @@
                 const selectedCategory = this.value;
                 const manuals = document.querySelectorAll('.manual-item');
                 const brands = document.querySelectorAll('.brand-item');
+                const letterSections = document.querySelectorAll('.letter-section');
                 
                 manuals.forEach(manual => {
                     if (selectedCategory === 'all' || manual.dataset.category === selectedCategory) {
@@ -99,6 +102,15 @@
                         brand.style.display = 'block';
                     } else {
                         brand.style.display = 'none';
+                    }
+                });
+
+                letterSections.forEach(section => {
+                    const visibleBrands = section.querySelectorAll('.brand-item:not([style*="display: none"])');
+                    if (visibleBrands.length === 0) {
+                        section.style.display = 'none';
+                    } else {
+                        section.style.display = 'block';
                     }
                 });
             });
