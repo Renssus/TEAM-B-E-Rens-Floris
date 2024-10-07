@@ -19,7 +19,7 @@ Home:			/
 Brand:			/52/AEG/
 Type:			/52/AEG/53/Superdeluxe/
 Manual:			/52/AEG/53/Superdeluxe/8023/manual/
-				/52/AEG/456/Testhandle/8023/manual/
+                /52/AEG/456/Testhandle/8023/manual/
 
 If we want to add product categories later:
 Productcat:		/category/12/Computers/
@@ -31,6 +31,8 @@ use App\Http\Controllers\ManualController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\LocaleController;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\LocaleController;
+use App\Http\Controllers\ContactController;
 
 // Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -51,3 +53,9 @@ Route::get('/{brand_id}/{brand_slug}/{manual_id}/', [ManualController::class, 's
 
 // Generate sitemaps
 Route::get('/generateSitemap/', [SitemapController::class, 'generate']);
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
+
+Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
