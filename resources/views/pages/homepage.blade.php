@@ -31,7 +31,6 @@
         .brand-list a {
             text-decoration: none;
         }
-
         .brand-list a:hover {
             color: rgb(42, 92, 123);
         }
