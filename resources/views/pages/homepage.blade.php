@@ -32,14 +32,16 @@
 
             @foreach($groupedBrands as $letter => $brands)
                 <div id="{{ $letter }}">
-                    <h2>{{ $letter }}</h2>
-                    <ul>
-                        @foreach($brands as $brand)
-                            <li class="my-4">
-                                <a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" class="text-dark">{{ $brand->name }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
+                    <div class="border-brand">
+                        <h2>{{ $letter }}</h2>
+                        <ul>
+                            @foreach($brands as $brand)
+                                <li class="my-4">
+                                    <a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" class="text-dark">{{ $brand->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             @endforeach
         </div>
