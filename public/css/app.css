@@ -10058,3 +10058,9 @@ footer{
     border-radius: 5px;
     padding: 10px;
 }
+
+.border-brand{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}

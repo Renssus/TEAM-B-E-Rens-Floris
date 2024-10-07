@@ -21,7 +21,7 @@
             @endphp
 
             @foreach($groupedBrands as $letter => $brands)
-                <div>
+                <div class="border-brand">
                     <h2>{{ $letter }}</h2>
                     <ul>
                         @foreach($brands as $brand)
