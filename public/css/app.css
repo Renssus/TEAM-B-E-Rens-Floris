@@ -10052,3 +10052,9 @@ a.text-dark:hover, a.text-dark:focus {
 footer{
     width: 1000px;
 }
+ 
+.text-dark{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+}
