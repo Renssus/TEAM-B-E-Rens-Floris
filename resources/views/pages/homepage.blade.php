@@ -12,6 +12,16 @@
         </x-slot:title>
     </h1>
 
+    @php
+        $allLetters = range('A', 'Z');
+    @endphp
+
+    <div class="alphabet-links">
+        @foreach($allLetters as $letter)
+            <a href="#{{ $letter }}" class="scroll-link">{{ $letter }}</a>
+        @endforeach
+    </div>
+
     <div class="container">
         <div class="brand-list">
             @php
@@ -21,11 +31,11 @@
             @endphp
 
             @foreach($groupedBrands as $letter => $brands)
-                <div>
+                <div id="{{ $letter }}">
                     <h2>{{ $letter }}</h2>
                     <ul>
                         @foreach($brands as $brand)
-                            <li class="my-4 ">
+                            <li class="my-4">
                                 <a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" class="text-dark">{{ $brand->name }}</a>
                             </li>
                         @endforeach
@@ -34,4 +44,17 @@
             @endforeach
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll('.scroll-link').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </x-layouts.app>
