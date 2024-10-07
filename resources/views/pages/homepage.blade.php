@@ -25,7 +25,7 @@
                     <h2>{{ $letter }}</h2>
                     <ul>
                         @foreach($brands as $brand)
-                            <li>
+                            <li class="my-4 ">
                                 <a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" class="text-dark">{{ $brand->name }}</a>
                             </li>
                         @endforeach
