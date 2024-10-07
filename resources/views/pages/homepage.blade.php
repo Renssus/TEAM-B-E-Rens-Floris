@@ -6,20 +6,23 @@
         <p>{{ __('introduction_texts.homepage_line_3') }}</p>
     </x-slot:introduction_text>
 
-    <h1 class="">
-        <x-slot:title>
-            {{ __('misc.all_brands') }}
-        </x-slot:title>
-    </h1>
+
+        <p>Kies jou categorie</p>
+    <div class="category-filter">
+        <select id="category-select" class="form-control">
+            <option value="all">{{ __('Alle categorieën') }}</option>
+            <option value="technology">{{ __('technology') }}</option>
+        </select>
+    </div>
 
     <div class="popular-manuals">
         <h2>Popular Manuals</h2>
         <ul>
             @foreach($popularManuals as $manual)
                 @if($manual->brand)
-                    <li>{{ $manual->brand->name }} {{ $manual->type }}</li>
+                    <li class="manual-item" data-category="{{ $manual->brand->category }}">{{ $manual->brand->name }} {{ $manual->type }}</li>
                 @else
-                    <li class="text-danger">Brand not found for manual: {{ $manual->type }}</li>
+                    <li class="manual-item text-danger" data-category="unknown">Brand not found for manual: {{ $manual->type }}</li>
                 @endif
             @endforeach
         </ul>
@@ -44,22 +47,22 @@
             @endphp
 
             @foreach($groupedBrands as $letter => $brands)
-                <div id="{{ $letter }}">
-                    <div class="border-brand">
-                        <h2>{{ $letter }}</h2>
-                        <ul>
-                            @foreach($brands as $brand)
-                                @if($brand)
-                                    <li class="my-4">
-                                        <a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" class="text-dark">{{ $brand->name }}</a>
-                                    </li>
-                                @else
-                                    <li class="my-4 text-danger">Brand not found</li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
+            <div id="{{ $letter }}">
+                <div class="border-brand">
+                    <h2>{{ $letter }}</h2>
+                    <ul>
+                        @foreach($brands as $brand)
+                            @if($brand)
+                                <li class="my-4 brand-item" data-category="{{ $brand->category }}">
+                                    <a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" class="text-dark">{{ $brand->name }}</a>
+                                </li>
+                            @else
+                                <li class="my-4 text-danger brand-item" data-category="unknown">Brand not found</li>
+                            @endif
+                        @endforeach
+                    </ul>
                 </div>
+            </div>
             @endforeach
         </div>
     </div>
@@ -73,6 +76,31 @@
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const categorySelect = document.getElementById('category-select');
+            categorySelect.addEventListener('change', function () {
+                const selectedCategory = this.value;
+                const manuals = document.querySelectorAll('.manual-item');
+                const brands = document.querySelectorAll('.brand-item');
+                
+                manuals.forEach(manual => {
+                    if (selectedCategory === 'all' || manual.dataset.category === selectedCategory) {
+                        manual.style.display = '';
+                    } else {
+                        manual.style.display = 'none';
+                    }
+                });
+
+                brands.forEach(brand => {
+                    if (selectedCategory === 'all' || brand.dataset.category === selectedCategory) {
+                        brand.style.display = 'block';
+                    } else {
+                        brand.style.display = 'none';
+                    }
+                });
             });
         });
     </script>
