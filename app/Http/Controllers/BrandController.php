@@ -10,14 +10,23 @@ class BrandController extends Controller
 {
     public function show($brand_id, $brand_slug)
     {
+        $brand = Brand::find($brand_id);
+        if (!$brand) {
+            abort(404, 'Brand not found');
+        }
 
-        $brand = Brand::findOrFail($brand_id);
-        $manuals = Manual::all()->where('brand_id', $brand_id);
+        $manuals = Manual::where('brand_id', $brand_id)->get();
 
-        return view('pages/manual_list', [
-            "brand" => $brand,
-            "manuals" => $manuals
+        // Get the 5 most popular manuals for this brand
+        $popularManuals = Manual::where('brand_id', $brand_id)
+                                ->orderBy('views', 'desc')
+                                ->take(5)
+                                ->get();
+
+        return view('pages.manual_list', [
+            'brand' => $brand,
+            'manuals' => $manuals,
+            'popularManuals' => $popularManuals
         ]);
-
     }
 }

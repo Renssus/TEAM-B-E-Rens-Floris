@@ -12,6 +12,19 @@
         </x-slot:title>
     </h1>
 
+    <div class="popular-manuals">
+        <h2>Popular Manuals</h2>
+        <ul>
+            @foreach($popularManuals as $manual)
+                @if($manual->brand)
+                    <li>{{ $manual->brand->name }} {{ $manual->type }}</li>
+                @else
+                    <li class="text-danger">Brand not found for manual: {{ $manual->type }}</li>
+                @endif
+            @endforeach
+        </ul>
+    </div>
+
     @php
         $allLetters = range('A', 'Z');
     @endphp
@@ -36,9 +49,13 @@
                         <h2>{{ $letter }}</h2>
                         <ul>
                             @foreach($brands as $brand)
-                                <li class="my-4">
-                                    <a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" class="text-dark">{{ $brand->name }}</a>
-                                </li>
+                                @if($brand)
+                                    <li class="my-4">
+                                        <a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" class="text-dark">{{ $brand->name }}</a>
+                                    </li>
+                                @else
+                                    <li class="my-4 text-danger">Brand not found</li>
+                                @endif
                             @endforeach
                         </ul>
                     </div>

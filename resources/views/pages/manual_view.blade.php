@@ -8,6 +8,10 @@
         <li><a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" alt="Manuals for '{{$brand->name}}'" title="Manuals for '{{$brand->name}}'">{{ $brand->name }}</a></li>
         <li><a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/" alt="Manuals for '{{$brand->name}} {{ $type->name }}'" title="Manuals for '{{$brand->name}} {{ $type->name }}'">{{ $type->name }}</a></li>
         <li><a href="/{{ $brand->id }}/{{ $brand->getNameUrlEncodedAttribute() }}/{{ $manual->id }}/" alt="View manual for '{{$brand->name}} '" title="View manual for '{{$brand->name}} {{ $type->name }}'">View</a></li>
+
+        <h1>{{ $brand->name }}: {{ $manual->type }}</h1>
+        <p>{{ $manual->content }}</p>
+        <p>Views: {{ $manual->views }}</p>
     </x-slot:breadcrumb>
 
     <h1>{{ $brand->name }} - {{ $type->name }}</h1>
