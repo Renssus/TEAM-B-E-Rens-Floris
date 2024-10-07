@@ -29,4 +29,9 @@ class BrandController extends Controller
             'popularManuals' => $popularManuals
         ]);
     }
+    public function showBrandsByLetter(string $letter)
+    {
+        $brands = Brand::where('name', 'LIKE', $letter . '%')->get();
+        return view('pages.brands_by_letter', ['brands' => $brands, 'letter' => $letter]);
+    }
 }
