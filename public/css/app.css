@@ -10049,8 +10049,56 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 
-footer{
+footer {
     width: 100%;
+    background-color: #333; /* Example background color */
+    color: #fff; /* Example text color */
+    padding: 20px 0; /* Example padding */
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 0 20px; /* Adjust padding as needed */
+}
+
+.footer-container .container {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.footer-container .container .mb-4 {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.footer-container .container .mb-4 h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.footer-container .container .mb-4 ul,
+.footer-container .container .mb-4 p {
+    margin-top: 0.5rem;
+}
+
+.footer-container .container .mb-4 ul li {
+    list-style: none;
+}
+
+.footer-container .container .mb-4 ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-container .container .mb-4 ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-container .text-center {
+    margin-top: 20px;
 }
  
 .text-dark{

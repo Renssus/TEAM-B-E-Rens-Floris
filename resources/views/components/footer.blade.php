@@ -1,4 +1,4 @@
-<footer class="bg-dark text-white">
+{{-- <footer class="bg-dark text-white">
 
     <div class="d-flex container text-center justify-content-around">
         <div class="mb-4">
@@ -58,4 +58,4 @@
     if (top.location != self.location) {
         top.location = self.location.href
     }
-</script>
+</script> --}}
